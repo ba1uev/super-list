@@ -1,0 +1,401 @@
+{
+	"campaigns": {
+		"items": [{
+			"id": 6835,
+			"period": {
+				"start": "2016-03-29",
+				"end": "2017-04-25"
+			},
+			"flights_list": {
+				"items": [],
+				"count": 0
+			},
+			"user": {
+				"id": 4544,
+				"crm_user": {
+					"children": [],
+					"name": "\u0410\u041f\u041c\u0415\u0414\u0418\u0410",
+					"full_name": "\u041e\u041e\u041e \"\u0410\u041f\u041c\u0415\u0414\u0418\u0410\"",
+					"client": true,
+					"agency": false,
+					"id": 10024
+				},
+				"type": "AgencyClient",
+				"status": "Active"
+			},
+			"title": "string \u0412\u0442\u043e\u0440\u0430\u044f \u043a\u0430\u043c\u043f\u0430\u043d\u0438\u044f",
+			"status": "New"
+		}, {
+			"id": 6834,
+			"period": {
+				"start": "2016-03-29",
+				"end": "2016-04-25"
+			},
+			"flights_list": {
+				"items": [{
+					"id": 6836,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 72,
+					"shows_total": 37086,
+					"avg_shows_day": 31931,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [],
+					"segment_target": [],
+					"age_target": [],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "olololo",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6841,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 42,
+					"shows_total": 11747,
+					"avg_shows_day": 20969,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [],
+					"segment_target": [],
+					"age_target": [],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "olololo",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6846,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 53,
+					"shows_total": 24985,
+					"avg_shows_day": 30832,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "olololo3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6852,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 74,
+					"shows_total": 14114,
+					"avg_shows_day": 26469,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "olololo3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6859,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 52,
+					"shows_total": 43831,
+					"avg_shows_day": 26585,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6866,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 60,
+					"shows_total": 45076,
+					"avg_shows_day": 18049,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6873,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 72,
+					"shows_total": 25353,
+					"avg_shows_day": 28162,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6880,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 66,
+					"shows_total": 36736,
+					"avg_shows_day": 34319,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6901,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 69,
+					"shows_total": 46845,
+					"avg_shows_day": 30477,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6908,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 93,
+					"shows_total": 22629,
+					"avg_shows_day": 19706,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6915,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 93,
+					"shows_total": 48553,
+					"avg_shows_day": 36106,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6922,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 70,
+					"shows_total": 8738,
+					"avg_shows_day": 39555,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6929,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 81,
+					"shows_total": 21822,
+					"avg_shows_day": 26769,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6936,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 55,
+					"shows_total": 49304,
+					"avg_shows_day": 31427,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}, {
+					"id": 6943,
+					"campaign_id": 6834,
+					"period": {
+						"start": "2016-03-29",
+						"end": "2016-04-25"
+					},
+					"ctr": 82,
+					"shows_total": 16442,
+					"avg_shows_day": 28274,
+					"place_target": [16],
+					"site_target": [6],
+					"geo_target": [372, 414],
+					"segment_target": [],
+					"age_target": [3],
+					"gender_target": [],
+					"incomes_target": [],
+					"section_target": [3],
+					"package_target": [],
+					"title": "ololol2o3",
+					"comment": "\"positionId\":\"965\",\"shows\":10000,\"comment\":\"string\"}",
+					"frequency_count": 1000,
+					"status": "New"
+				}],
+				"count": 15
+			},
+			"user": {
+				"id": 4731,
+				"crm_user": {
+					"children": [],
+					"name": "\u0417\u0430\u043f\u0430\u0434\u043d\u0430\u044f \u0420\u0435\u0437\u0438\u0434\u0435\u043d\u0446\u0438\u044f",
+					"full_name": "\u0417\u0430\u043f\u0430\u0434\u043d\u0430\u044f \u0420\u0435\u0437\u0438\u0434\u0435\u043d\u0446\u0438\u044f",
+					"client": true,
+					"agency": false,
+					"id": 10199
+				},
+				"type": "AgencyClient",
+				"status": "Active"
+			},
+			"title": "\u041f\u0435\u0440\u0432\u0430\u044f \u043a\u0430\u043c\u043f\u0430\u043d\u0438\u044f",
+			"status": "New"
+		}],
+		"count": 2
+	}
+}

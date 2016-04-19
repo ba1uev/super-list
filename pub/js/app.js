@@ -3,64 +3,85 @@ var List = React.createClass({
     return {
       filterText: '',
       filterStatus: 'all',
-      pagination: this.props.pagination
+      pagination: this.props.pagination,
+      range: this.props.range
     }
   },
   handleUserInput(filterText, filterStatus) {
     this.setState({
       filterText: (filterText !== null) ? filterText : this.state.filterText,
       filterStatus: (filterStatus !== null) ? filterStatus : this.state.filterStatus
-    });
+    })
   },
   handleGetMoreItems(){
     this.setState({
       pagination: null
-    });
+    })
+  },
+  handleRangeChange(range){
+    console.log('changet to ', range);
+    this.setState({
+      range: range
+    })
   },
   render(){
     return (
       <div>
         <h1>Flight list</h1>
 
-        <SearchBar
-          filterText={this.state.filterText}
-          onUserInput={this.handleUserInput}/>
+        <RangeBar
+          range={this.state.range}
+          onUserInput={this.handleRangeChange}/>
 
         <FilterBar
           filterStatus={this.state.filterStatus}
           onUserInput={this.handleUserInput} />
 
-        <FlightList
-          flights={this.props.flights}
-          pagination={this.state.pagination}
-          getMoreItems={this.handleGetMoreItems}
+        <SearchBar
           filterText={this.state.filterText}
-          filterStatus={this.state.filterStatus}/>
+          onUserInput={this.handleUserInput}/>
+
+        { this.state.range ?
+          <HeaderedList
+            data={this.props.data}
+            pagination={this.state.pagination}
+            getMoreItems={this.handleGetMoreItems}
+            filterText={this.state.filterText}
+            filterStatus={this.state.filterStatus}/>
+          :
+          <FlightList
+            flights={this.props.data}
+            pagination={this.state.pagination}
+            getMoreItems={this.handleGetMoreItems}
+            filterText={this.state.filterText}
+            filterStatus={this.state.filterStatus}/>
+         }
       </div>
     );
   }
 });
 
-var SearchBar = React.createClass({
-  handleChange: function() {
-    this.props.onUserInput(
-      this.refs.filterTextInput.value,
-      null
-    );
+var RangeBar = React.createClass({
+  handleChange(e){
+    e.preventDefault();
+    this.props.onUserInput(e.target.dataset.range);
   },
   render(){
-    return (
-      <form>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={this.props.filterText}
-          ref="filterTextInput"
-          onChange={this.handleChange}/>
-      </form>
-    )
+    var range = this.props.range;
+    if (range) {
+      return (
+        <div>
+          Показываем: {'  '}
+          <a href="" data-range="campaign" onClick={this.handleChange}>по кампании</a>,{'  '}
+          <a href="" data-range="client" onClick={this.handleChange}>по клиенту</a>
+          <hr/>
+        </div>
+      )
+    } else {
+      return false
+    }
   }
-});
+})
 
 var FilterBar = React.createClass({
   handleChange(e){
@@ -81,6 +102,42 @@ var FilterBar = React.createClass({
     )
   }
 });
+
+var SearchBar = React.createClass({
+  handleChange: function() {
+    this.props.onUserInput(
+      this.refs.filterTextInput.value,
+      null
+    );
+  },
+  render(){
+    return (
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={this.props.filterText}
+          ref="filterTextInput"
+          onChange={this.handleChange}/>
+          <hr/>
+      </form>
+    )
+  }
+});
+
+var HeaderedList = React.createClass({
+  render(){
+    return (
+      <div>
+        <ListHeader />
+        <FlightList
+          flights={this.props.data}
+          filterText={this.props.filterText}
+          filterStatus={this.props.filterStatus}/>
+      </div>
+    )
+  }
+})
 
 var FlightList = React.createClass({
   getMoreItemsAction(){
@@ -125,6 +182,16 @@ var FlightList = React.createClass({
   }
 });
 
+var ListHeader = React.createClass({
+  render(){
+    return (
+      <div>
+        <h4>Заголовок списка</h4>
+      </div>
+    )
+  }
+})
+
 var FlightItem = React.createClass({
   render(){
     var title = this.props.flight.title;
@@ -149,51 +216,8 @@ var FlightItem = React.createClass({
 
 // =======================================
 
-var DATA = [{
-  id: 1,
-  title: 'первый',
-  place: 'афиша',
-  status: 'active',
-  shows: 2134
-}, {
-  id: 2,
-  title: 'пир на весь мир',
-  place: 'рамблер',
-  status: 'finish',
-  shows: 213233134
-}, {
-  id: 3,
-  title: 'персона',
-  place: 'афиша',
-  status: 'active',
-  shows: 11102134
-}, {
-  id: 4,
-  title: 'первоочередный',
-  place: 'рамблер',
-  status: 'planing',
-  shows: 999920
-}, {
-  id: 5,
-  title: 'перевозка',
-  place: 'рамблер',
-  status: 'finish',
-  shows: 666
-}, {
-  id: 6,
-  title: 'закрыто',
-  place: 'афиша',
-  status: 'finish',
-  shows: 777
-}, {
-  id: 7,
-  title: 'перестало быть крутым',
-  place: 'рамблер',
-  status: 'finish',
-  shows: 6696
-}];
 
 ReactDOM.render(
-  <List flights={DATA} pagination={3}/>,
+  <List data={DATA} pagination={3} range={'client'}/>,
   document.getElementById('cont')
 );
