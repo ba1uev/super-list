@@ -126,14 +126,29 @@ var SearchBar = React.createClass({
 });
 
 var HeaderedList = React.createClass({
+  getMoreItems(){
+    this.props.getMoreItems();
+  },
   render(){
+    var HeaderedList = [];
+    this.props.data.campaigns.forEach((range) => {
+      let headerData = range.campaign;
+      let listData = range.flights;
+      HeaderedList.push(
+        <div>
+          <ListHeader data={headerData}/>
+          <FlightList
+            flights={listData}
+            filterText={this.props.filterText}
+            pagination={this.props.pagination}
+            filterStatus={this.props.filterStatus}
+            getMoreItems={this.props.getMoreItems}/>
+        </div>
+      );
+    });
     return (
       <div>
-        <ListHeader />
-        <FlightList
-          flights={this.props.data}
-          filterText={this.props.filterText}
-          filterStatus={this.props.filterStatus}/>
+        {HeaderedList}
       </div>
     )
   }
@@ -186,7 +201,7 @@ var ListHeader = React.createClass({
   render(){
     return (
       <div>
-        <h4>Заголовок списка</h4>
+        <h4 style={{color: 'red'}}>{this.props.data.title}</h4>
       </div>
     )
   }
@@ -218,6 +233,6 @@ var FlightItem = React.createClass({
 
 
 ReactDOM.render(
-  <List data={DATA} pagination={3} range={'client'}/>,
+  <List data={DATA_by_campaign} pagination={3} range={'client'}/>,
   document.getElementById('cont')
 );
