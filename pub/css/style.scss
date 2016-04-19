@@ -1,0 +1,32 @@
+$m: rgb(92, 173, 124);
+
+body {
+  background: $m;
+}
+
+#cont {
+  background-color: #fff;
+  min-height: 100px;
+  max-width: 500px;
+  position: relative;
+  margin: 80px auto;
+  padding: 20px;
+}
+
+.editor {
+  font-family: helvetica;
+  &-title, &-body {
+    background: #fff;
+  }
+  &-title:focus, &-body:focus {
+    outline: none;
+  }
+  &-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  &-body {
+    font-size: 20px;
+  }
+}
