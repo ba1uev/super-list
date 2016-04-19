@@ -2,13 +2,19 @@ var List = React.createClass({
   getInitialState(){
     return {
       filterText: '',
-      filterStatus: 'all'
+      filterStatus: 'all',
+      pagination: this.props.pagination
     }
   },
   handleUserInput(filterText, filterStatus) {
     this.setState({
       filterText: (filterText !== null) ? filterText : this.state.filterText,
       filterStatus: (filterStatus !== null) ? filterStatus : this.state.filterStatus
+    });
+  },
+  handleGetMoreItems(){
+    this.setState({
+      pagination: null
     });
   },
   render(){
@@ -26,6 +32,8 @@ var List = React.createClass({
 
         <FlightList
           flights={this.props.flights}
+          pagination={this.state.pagination}
+          getMoreItems={this.handleGetMoreItems}
           filterText={this.state.filterText}
           filterStatus={this.state.filterStatus}/>
       </div>
@@ -75,8 +83,12 @@ var FilterBar = React.createClass({
 });
 
 var FlightList = React.createClass({
+  getMoreItemsAction(){
+    this.props.getMoreItems();
+  },
   render(){
     var flights = [],
+      pagination = this.props.pagination,
       filterText = this.props.filterText,
       filterStatus = this.props.filterStatus,
       statusMap = {
@@ -84,18 +96,29 @@ var FlightList = React.createClass({
         active: 'active',
         finish: 'finish',
         planing: 'planing'
-      };
+      },
+      itemCount = 0;
     this.props.flights.forEach((flight) => {
       if (((flight.title.indexOf(filterText) !== -1
       || flight.place.indexOf(filterText) !== -1))
       && (flight.status.includes(statusMap[filterStatus]))) {
-        flights.push(<FlightItem flight={flight} key={flight.title}/>);
+        if (pagination) {
+          if (itemCount < pagination) {
+            flights.push(<FlightItem flight={flight} key={flight.title}/>);
+            ++itemCount;
+          } else {
+            return
+          }
+        } else {
+          flights.push(<FlightItem flight={flight} key={flight.title}/>);
+        }
       }
     })
     return (
       <div>
         <div>
           {flights}
+          {pagination ? <button style={{margin: 'auto', postion: 'relative'}} onClick={this.getMoreItemsAction}>More</button> : null}
         </div>
       </div>
     )
@@ -126,7 +149,7 @@ var FlightItem = React.createClass({
 
 // =======================================
 
-var CAMPAIGN_FLIGHTS = [{
+var DATA = [{
   id: 1,
   title: 'первый',
   place: 'афиша',
@@ -150,9 +173,27 @@ var CAMPAIGN_FLIGHTS = [{
   place: 'рамблер',
   status: 'planing',
   shows: 999920
+}, {
+  id: 5,
+  title: 'перевозка',
+  place: 'рамблер',
+  status: 'finish',
+  shows: 666
+}, {
+  id: 6,
+  title: 'закрыто',
+  place: 'афиша',
+  status: 'finish',
+  shows: 777
+}, {
+  id: 7,
+  title: 'перестало быть крутым',
+  place: 'рамблер',
+  status: 'finish',
+  shows: 6696
 }];
 
 ReactDOM.render(
-  <List flights={CAMPAIGN_FLIGHTS} />,
+  <List flights={DATA} pagination={3}/>,
   document.getElementById('cont')
 );
