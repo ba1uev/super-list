@@ -4,7 +4,8 @@ var List = React.createClass({
       filterText: '',
       filterStatus: 'all',
       pagination: this.props.pagination,
-      range: this.props.range
+      range: this.props.range,
+      data: this.props.range ? this.dataParse(this.props.data, this.props.range) : this.props.data
     }
   },
   handleUserInput(filterText, filterStatus) {
@@ -13,9 +14,55 @@ var List = React.createClass({
       filterStatus: (filterStatus !== null) ? filterStatus : this.state.filterStatus
     })
   },
+  dataParse(data, range){
+    var result;
+    if (range === 'client') {
+      console.log('dataparse client');
+      result = this.dataParseClient(data);
+    }
+    if (range === 'campaign') {
+      console.log('dataparse campaign');
+      result = this.dataParseCampaign(data);
+    }
+    return result;
+  },
+  dataParseClient(data) {
+    var arr = [],
+      map = [];
+    data.campaigns.items.forEach((item, i) => {
+      var user = item.user;
+      var flights = item.flights_list.items;
+      arr.push({
+        user: user,
+        flights: flights
+      });
+    });
+    arr.forEach((item, i) => {
+      let userId = item.user.id;
+      let index = map.indexOf(userId);
+      if (index === -1) {
+        map.push(userId);
+      } else {
+        arr[index].flights = arr[index].flights.concat(arr[i].flights);
+        arr.splice(i,1);
+      }
+    });
+    return arr
+  },
+  dataParseCampaign(data){
+    var result = [];
+    data.campaigns.items.forEach((c,i) => {
+      result.push({
+        campaign: c,
+        flights: c.flights_list.items
+      })
+    });
+    return result
+  },
   handleRangeChange(range){
     this.setState({
-      range: range
+      range: range,
+      data: range ? this.dataParse(this.props.data, range) : this.props.data
     })
   },
   render(){
@@ -38,13 +85,13 @@ var List = React.createClass({
         { this.state.range ?
           <HeaderedList
             range={this.state.range}
-            data={this.props.data}
+            data={this.state.data}
             pagination={this.state.pagination}
             filterText={this.state.filterText}
             filterStatus={this.state.filterStatus}/>
           :
           <FlightList
-            flights={this.props.data}
+            flights={this.state.data}
             pagination={this.state.pagination}
             filterText={this.state.filterText}
             filterStatus={this.state.filterStatus}/>
@@ -65,8 +112,8 @@ var RangeBar = React.createClass({
       return (
         <div>
           Показываем: {'  '}
-          <a href="" data-range="campaign" onClick={this.handleChange}>по кампании</a>,{'  '}
-          <a href="" data-range="client" onClick={this.handleChange}>по клиенту</a>
+          <a href="" className={range === 'campaign' ? 'active' : null} data-range="campaign" onClick={this.handleChange}>по кампании</a>,{'  '}
+          <a href="" className={range === 'client' ? 'active' : null} data-range="client" onClick={this.handleChange}>по клиенту</a>
           <hr/>
         </div>
       )
@@ -85,12 +132,13 @@ var FilterBar = React.createClass({
     );
   },
   render(){
+    var fs = this.props.filterStatus;
     return (
       <div>
-        <a href="" data-filter="all" onClick={this.handleChange}>Все</a>{'  '}
-        <a href="" data-filter="active" onClick={this.handleChange}>Активные</a>{'  '}
-        <a href="" data-filter="planing" onClick={this.handleChange}>Планируемые</a>{'  '}
-        <a href="" data-filter="finish" onClick={this.handleChange}>Закрытые</a>
+        <a href="" className={fs === 'all' ? 'active' : null} data-filter="all" onClick={this.handleChange}>Все</a>{'  '}
+        <a href="" className={fs === 'active' ? 'active' : null} data-filter="active" onClick={this.handleChange}>Активные</a>{'  '}
+        <a href="" className={fs === 'planing' ? 'active' : null} data-filter="planing" onClick={this.handleChange}>Планируемые</a>{'  '}
+        <a href="" className={fs === 'finish' ? 'active' : null} data-filter="finish" onClick={this.handleChange}>Закрытые</a>
       </div>
     )
   }
@@ -121,8 +169,9 @@ var SearchBar = React.createClass({
 var HeaderedList = React.createClass({
   render(){
     var HeaderedList = [];
-    this.props.data.campaigns.forEach((range) => {
-      let headerData = (this.props.range === 'campaign') ? range.campaign : range.client;
+    this.props.data.forEach((range) => {
+      let headerData = (this.props.range === 'campaign') ? range.campaign : range.user;
+      // let headerData = range.campaign;
       let listData = range.flights;
       HeaderedList.push(
         <div>
@@ -208,15 +257,16 @@ var ListHeader = React.createClass({
     if (range === 'client') {
       return (
         <div>
-          <h4 style={{color: 'hotpink'}}>{this.props.data.title}</h4>
+          <h4 style={{backgroundColor: 'hotpink'}}>{this.props.data.id}</h4>
+          <p style={{color: 'gray'}}>SHAPKA для клиента</p>
         </div>
       )
     };
     if (range === 'campaign') {
       return (
         <div>
-          <h4 style={{color: 'red'}}>{this.props.data.title}</h4>
-          <p>Шапка для кампании</p>
+          <h4 style={{backgroundColor: 'red'}}>{this.props.data.title}</h4>
+          <p style={{color: 'gray'}}>Шапка для кампании</p>
         </div>
       )
     };
@@ -255,6 +305,6 @@ var FlightItem = React.createClass({
 // =======================================
 
 ReactDOM.render(
-  <List data={DATA2} pagination={3} range={'campaign'}/>,
+  <List data={atd_data_new} pagination={3} range={'client'}/>,
   document.getElementById('cont')
 );
