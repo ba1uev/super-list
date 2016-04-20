@@ -13,13 +13,7 @@ var List = React.createClass({
       filterStatus: (filterStatus !== null) ? filterStatus : this.state.filterStatus
     })
   },
-  handleGetMoreItems(){
-    this.setState({
-      pagination: null
-    })
-  },
   handleRangeChange(range){
-    console.log('changet to ', range);
     this.setState({
       range: range
     })
@@ -43,16 +37,15 @@ var List = React.createClass({
 
         { this.state.range ?
           <HeaderedList
+            range={this.state.range}
             data={this.props.data}
             pagination={this.state.pagination}
-            getMoreItems={this.handleGetMoreItems}
             filterText={this.state.filterText}
             filterStatus={this.state.filterStatus}/>
           :
           <FlightList
             flights={this.props.data}
             pagination={this.state.pagination}
-            getMoreItems={this.handleGetMoreItems}
             filterText={this.state.filterText}
             filterStatus={this.state.filterStatus}/>
          }
@@ -126,23 +119,24 @@ var SearchBar = React.createClass({
 });
 
 var HeaderedList = React.createClass({
-  getMoreItems(){
-    this.props.getMoreItems();
-  },
   render(){
     var HeaderedList = [];
     this.props.data.campaigns.forEach((range) => {
-      let headerData = range.campaign;
+      let headerData = (this.props.range === 'campaign') ? range.campaign : range.client;
       let listData = range.flights;
       HeaderedList.push(
         <div>
-          <ListHeader data={headerData}/>
+          <ListHeader
+            data={headerData}
+            range={this.props.range}
+            />
+
           <FlightList
             flights={listData}
             filterText={this.props.filterText}
             pagination={this.props.pagination}
             filterStatus={this.props.filterStatus}
-            getMoreItems={this.props.getMoreItems}/>
+            getMoreItems={this.getMoreItems}/>
         </div>
       );
     });
@@ -155,12 +149,19 @@ var HeaderedList = React.createClass({
 })
 
 var FlightList = React.createClass({
+  getInitialState(){
+    return {
+      pagination: this.props.pagination
+    }
+  },
   getMoreItemsAction(){
-    this.props.getMoreItems();
+    this.setState({
+      pagination: null
+    });
   },
   render(){
     var flights = [],
-      pagination = this.props.pagination,
+      pagination = this.state.pagination,
       filterText = this.props.filterText,
       filterStatus = this.props.filterStatus,
       statusMap = {
@@ -170,6 +171,7 @@ var FlightList = React.createClass({
         planing: 'planing'
       },
       itemCount = 0;
+
     this.props.flights.forEach((flight) => {
       if (((flight.title.indexOf(filterText) !== -1
       || flight.place.indexOf(filterText) !== -1))
@@ -199,11 +201,25 @@ var FlightList = React.createClass({
 
 var ListHeader = React.createClass({
   render(){
-    return (
-      <div>
-        <h4 style={{color: 'red'}}>{this.props.data.title}</h4>
-      </div>
-    )
+    var range = this.props.range;
+    if (!range) {
+      return false
+    };
+    if (range === 'client') {
+      return (
+        <div>
+          <h4 style={{color: 'hotpink'}}>{this.props.data.title}</h4>
+        </div>
+      )
+    };
+    if (range === 'campaign') {
+      return (
+        <div>
+          <h4 style={{color: 'red'}}>{this.props.data.title}</h4>
+          <p>Шапка для кампании</p>
+        </div>
+      )
+    };
   }
 })
 
@@ -230,9 +246,15 @@ var FlightItem = React.createClass({
 
 
 // =======================================
+// TODO
 
+// DATA_by_client / DATA_by_campaign
+// showMore fix
+//
+
+// =======================================
 
 ReactDOM.render(
-  <List data={DATA_by_campaign} pagination={3} range={'client'}/>,
+  <List data={DATA2} pagination={3} range={'campaign'}/>,
   document.getElementById('cont')
 );
